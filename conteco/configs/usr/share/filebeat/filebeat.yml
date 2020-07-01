@@ -1,6 +1,11 @@
 filebeat.inputs:
-- type: log
-  paths: "${ES_FILEBEAT_FILEPATHS:'/var/log/*.log'}"
+- type: kafka
+  hosts: ["${ES_FILEBEAT_KAFKA_HOSTS}"]
+  topics: ["${ES_FILEBEAT_KAFKA_TOPICS:filebeat}"]
+  group_id: "${ES_FILEBEAT_KAFKA_CONSUMERGROUP:filebeat.kafka}"
+  ssl.enabled: ${ES_FILEBEAT_KAFKA_SSL:false}
+  username: "${ES_FILEBEAT_KAFKA_USERNAME}"
+  password: "${ES_FILEBEAT_KAFKA_PASSWORD}"
 
 output.console:
   enabled: ${ES_FILEBEAT_OUTPUT_CONSOLE:false}
