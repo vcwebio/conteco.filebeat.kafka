@@ -18,10 +18,7 @@ output.console:
 
 output.elasticsearch:
   enabled: ${ES_FILEBEAT_OUTPUT_ELASTICSEARCH:false}
-  ssl.enabled: ${ES_FILEBEAT_OUTPUT_CONFIG_ELASTICSEARCH_SSL:false}
   hosts: ${ES_FILEBEAT_OUTPUT_CONFIG_ELASTICSEARCH_HOSTS:'elasticsearch:9200'}
-  username: "${ES_FILEBEAT_OUTPUT_CONFIG_ELASTICSEARCH_USERNAME}"
-  password: "${ES_FILEBEAT_OUTPUT_CONFIG_ELASTICSEARCH_PASSWORD}"
   index: "${ES_FILEBEAT_OUTPUT_CONFIG_ELASTICSEARCH_INDEX:filebeat}-%{[beat.version]}-%{+yyyy.MM.dd}"
 
 setup.template.name: "${ES_FILEBEAT_OUTPUT_CONFIG_ELASTICSEARCH_INDEX:filebeat}-%{[beat.version]}"
@@ -37,10 +34,7 @@ output.logstash:
 
 output.kafka:
   enabled: ${ES_FILEBEAT_OUTPUT_KAFKA:false}
-  ssl.enabled: ${ES_FILEBEAT_OUTPUT_CONFIG_KAFKA_SSL:false}
   hosts: ${ES_FILEBEAT_OUTPUT_CONFIG_KAFKA_HOSTS:"kafka:9092"}
-  username: "${ES_FILEBEAT_OUTPUT_CONFIG_KAFKA_USERNAME}"
-  password: "${ES_FILEBEAT_OUTPUT_CONFIG_KAFKA_PASSWORD}"
   topic: '${ES_FILEBEAT_OUTPUT_CONFIG_KAFKA_TOPIC:es_filebeat_kafka}'
   version: "2.0.0"
   partition.round_robin:
